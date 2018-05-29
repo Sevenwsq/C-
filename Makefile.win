@@ -1,0 +1,33 @@
+# Project: 金猪报喜
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = 金猪报喜_private.res
+OBJ      = 项目尝试.o $(RES)
+LINKOBJ  = 项目尝试.o $(RES)
+LIBS     = -L"C:/Users/王桑乔/Dev-Cpp/MinGW64/lib" -L"C:/Users/王桑乔/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -mwindows
+INCS     = -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/include" -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/include" -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/王桑乔/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = 金猪报喜.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+项目尝试.o: 项目尝试.cpp
+	$(CPP) -c 项目尝试.cpp -o 项目尝试.o $(CXXFLAGS)
+
+金猪报喜_private.res: 金猪报喜_private.rc resource.rc
+	$(WINDRES) -i 金猪报喜_private.rc --input-format=rc -o 金猪报喜_private.res -O coff 
+
